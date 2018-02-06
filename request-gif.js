@@ -14,6 +14,23 @@ $(document).ready(function() {
  */
 function fetchAndDisplayGif(event) {
     
+    // Verify the captcha test
+    var captchaTextBox = $('#form-gif-request input[name="captcha"]')
+    var captchaAnswer = captchaTextBox.val();
+    console.log("Captcha Answer=" + captchaAnswer);
+    if (captchaAnswer != "5") {
+        console.log('Captcha failed!');
+        // Un-hide the error message
+        $("#captcha-error").removeAttr("hidden");
+        // Change input text box to red border
+        captchaTextBox.css("border-color", "#ff0000");
+        return false;
+    } else {
+        // Captcha passed, so hide error message
+        $("#captcha-error").attr("hidden", "true");
+        captchaTextBox.css("border-color", "#000000");
+    }
+
     // This prevents the form submission from doing what it normally does: send a request (which would cause our page to refresh).
     // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
     event.preventDefault();
