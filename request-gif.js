@@ -74,6 +74,7 @@ function fetchAndDisplayGif(event) {
     
     // give the user a "Loading..." message while they wait
     $("#feedback").text("Loading...");
+    setGifLoadedStatus(false);
 }
 
 
